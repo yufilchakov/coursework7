@@ -7,6 +7,11 @@ services:
     restart: on-failure
     expose:
       - "6379"
+    healthcheck:
+      test: redis-cli ping
+      interval: 10s
+      retries: 3
+      timeout: 3s
 
   db:
     image: postgres:16-alpine
